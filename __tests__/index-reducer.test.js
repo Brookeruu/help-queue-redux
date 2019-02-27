@@ -14,11 +14,11 @@ describe("rootReducer", () => {
     });
 
     test('Should contain ticketListReducer logic', () => {
-      expect(store.getState().newMasterTicketList).toEqual(ticketListReducer(undefined, { type: null }));
+      expect(store.getState().masterTicketList).toEqual(ticketListReducer(undefined, { type: null }));
     });
 
     test('Should contain selected logic', () => {
-      expect(store.getState().selectedTicket).toEqual(seleselectedTicketReducer(undefined, { type: null }));
+      expect(store.getState().selectedTicket).toEqual(selectedTicketReducer(undefined, { type: null }));
     });
 
   });
