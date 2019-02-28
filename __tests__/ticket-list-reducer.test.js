@@ -4,7 +4,7 @@ import ticketListReducer from './../src/reducers/ticket-list-reducer';
 describe('ticketListReducer', () => {
 
   let action;
-  const sampleTIcketData = {
+  const sampleTicketData = {
     names : 'Ryan & Amy',
     location : '4b',
     issue : 'Jest is being a jerk and wont work with webpack!',
@@ -17,7 +17,7 @@ describe('ticketListReducer', () => {
   });
 
   test('Should successfully add new ticket data to masterTickerList', () => {
-    const { names, location, issue, timeOpen, id } = sampleTIcketData;
+    const { names, location, issue, timeOpen, id } = sampleTicketData;
     action = {
       type: 'ADD_TICKET',
       names: names,
@@ -33,6 +33,25 @@ describe('ticketListReducer', () => {
         issue: issue,
         timeOpen: timeOpen,
         id: id
+      }
+    });
+  });
+
+  test('Should add freshly-calculated Moment-formatted wait time to ticket entry', () => {
+    const { names, location, issue, timeOpen, id } = sampleTicketData;
+    action = {
+      type: 'UPDATE_TIME',
+      formattedWaitTime: '4 minutes',
+      id: id
+    };
+    expect(ticketListReducer({ [id] : sampleTicketData }, action)).toEqual({
+      [id] : {
+        names: names,
+        location: location,
+        issue: issue,
+        timeOpen: timeOpen,
+        id: id,
+        formattedWaitTime: '4 minutes'
       }
     });
   });
